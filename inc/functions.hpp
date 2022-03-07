@@ -7,8 +7,9 @@ struct Elem{
     Elem* right;
     Elem* parent;
 };
-Elem* MAKE(int data, Elem* p);
-void ADD(int data, Elem*& root);
-void PASS(Elem* v);
-Elem* SEARCH(int data, Elem* v);
-void DELETE(int data, Elem*& root);
+Elem* make(int data, Elem* p);
+void add(int data, Elem*& root);
+void pass(Elem* v);
+Elem* search(int data, Elem* v);
+void deleteElem(int data, Elem*& root);
+void numberDepth(int data, Elem* v, int a);

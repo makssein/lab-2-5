@@ -1,6 +1,6 @@
 #include "functions.hpp"
 
-Elem* MAKE(int data, Elem* p){
+Elem* make(int data, Elem* p){
     Elem* q = new Elem;
     q->data = data;
     q->left = nullptr;
@@ -9,10 +9,9 @@ Elem* MAKE(int data, Elem* p){
     return q;
 }
 
-
-void ADD(int data, Elem*& root){
+void add(int data, Elem*& root){
     if (root == nullptr) {
-        root = MAKE(data, nullptr);
+        root = make(data, nullptr);
         return;
     }
     Elem* v = root;
@@ -23,37 +22,37 @@ void ADD(int data, Elem*& root){
             v = v->right;
     if (data == v->data)
         return;
-    Elem* u = MAKE(data, v);
+    Elem* u = make(data, v);
     if (data < v->data)
         v->left = u;
     else
         v->right = u;
 }
 
-void PASS(Elem* v){
+void pass(Elem* v){
     if (v == nullptr)
         return;
 
-    PASS(v->left);
+    pass(v->left);
     std::cout << v->data << std::endl;
 
-    PASS(v->right);
+    pass(v->right);
 }
 
-Elem* SEARCH(int data, Elem* v){
+Elem* search(int data, Elem* v){
     if (v == nullptr)
         return v;
     if (v->data == data)
         return v;
     if (data < v->data)
-        return SEARCH(data, v->left);
+        return search(data, v->left);
     else
-        return SEARCH(data, v->right);
+        return search(data, v->right);
 }
 
 
-void DELETE(int data, Elem*& root){
-    Elem* u = SEARCH(data, root);
+void deleteElem(int data, Elem*& root){
+    Elem* u = search(data, root);
     if (u == nullptr)
         return;
 
@@ -81,5 +80,20 @@ void DELETE(int data, Elem*& root){
         u->parent->right = t;
     if (t != nullptr)
         t->parent = u->parent;
+}
+
+void numberDepth(int data, Elem* v, int a){
+    if (v == nullptr) {
+        std::cout << "n";
+        return;
+    }
+
+    if (v->data == data) {
+        std::cout << a;
+        return;
+    }
+
+    if (data < v->data) numberDepth(data, v->left, a + 1);
+    else numberDepth(data, v->right, a+1);
 }
 
