@@ -87,12 +87,11 @@ void numberDepth(int data, Elem* v, int a){
         std::cout << "n";
         return;
     }
-
     if (v->data == data) {
         std::cout << a;
         return;
     }
-
+    
     if (data < v->data) numberDepth(data, v->left, a + 1);
     else numberDepth(data, v->right, a+1);
 }
